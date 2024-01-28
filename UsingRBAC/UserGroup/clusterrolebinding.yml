@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+# This cluster role binding allows anyone in the "dev" group to read secrets in any namespace.
+kind: ClusterRoleBinding
+metadata:
+  name: vishwa-cluster-binding
+subjects:
+- kind: User
+  name: vishwa # "name" is case sensitive
+  apiGroup: ""
+roleRef:
+- kind: ClusterRole
+  name: pod-full-access
+  apiGroup: ""

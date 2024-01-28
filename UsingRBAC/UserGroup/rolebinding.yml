@@ -1,0 +1,15 @@
+apiVersion: rbac.authorization.k8s.io/v1
+# This role binding allows user "vishwa" for pods in the "default" namespace.
+kind: RoleBinding
+metadata:
+  name: pod-only-access
+subjects:
+# You can specify more than one "subject"
+- kind: User
+  name: vishwa # "name" is case sensitive
+  apiGroup: ""
+roleRef:
+  # "roleRef" specifies the binding to a Role / ClusterRole
+  kind: Role #this must be Role or ClusterRole
+  name: role-for-vishwa-user 
+  apiGroup: ""

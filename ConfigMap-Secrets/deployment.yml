@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-python-app
+  labels:
+    app: sample-python-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sample-python-app
+  template:
+    metadata:
+      labels:
+        app: sample-python-app
+    spec:
+      containers:
+      - name: python-app
+        image: vishwask22/python-sample-app-demo:v1
+        ports:
+        - containerPort: 8000
+        #env:
+        #- name: SECRET_USERNAME
+        #  valueFrom:
+        #    secretKeyRef:
+        #      name: backend-user
+        #      key: backend-username
+        volumeMounts:
+        - name: secret-volume
+          mountPath: "/opt/"
+      volumes:
+      - name: secret-volume
+        secret:
+          secretName: backend-user    
+
+
+
